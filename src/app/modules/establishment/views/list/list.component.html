@@ -1,0 +1,49 @@
+<nav class="navbar">
+  <div class="navbar-left">
+      <a routerLink="/sign-in"><i class="fas fa-chevron-left navbar-icon"></i></a>
+  </div>
+
+  <label class="navbar-brand text-white">Estabelecimentos</label>
+
+  <div class="navbar-right" >
+    <a [routerLink]="'/establishment/create'"><i class="fas fa-plus navbar-icon"></i></a>
+  </div>
+</nav>
+
+<section>
+  <div class="row pt-3">
+    <div class="col">
+
+      <label for="inputSearch" class="sr-only">Pesquisar</label>
+      <input
+        type="text"
+        id="inputSearch"
+        class="form-control"
+        placeholder="Pesquisar"
+        required
+        autofocus
+        [formControl]="searchControl"
+      />
+    </div>
+  </div>
+  <ul class="list-unstyled">
+    <li (click)="goToDetails(item)" *ngFor="let item of establishmentsFiltered$ | async">
+      <div class="card my-3">
+        <div class="media">
+          <img
+            class="card-img-top"
+            alt="Thumbnail"
+            style="height: 150px; width: 150px; display: block"
+            src="/assets/images/logoCatavento.png"
+          />
+          <div class="media-body p-3">
+            <h5 class="mt-0 mb-1">{{ item.name }}</h5>
+            <p style="margin-bottom: 0;" class="text-body-secondary"><small>{{ item.serviceType }}</small></p>
+            {{ item.description }}
+          </div>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+</section>
